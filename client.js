@@ -4,3 +4,6 @@ const socket = io('ws://localhost:4000')
 
 // socket.on('')
 socket.emit('message', 'Hello World')
+socket.on('message', (msg) => {
+    console.log(msg);
+})

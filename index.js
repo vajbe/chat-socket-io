@@ -19,12 +19,17 @@ const io = new Server(server, {
 // Add this
 // Listen for when the client connects via socket.io-client
 io.on('connection', (socket) => {
+    
     console.log(`User connected ${socket.id}`);
-
     socket.on('message', (msg) => {
         console.log(msg)
+        socket.emit('message', 'Got it')
+    });
+
+    socket.on('disconnect', (reason) => {
+        console.log('Disconnecting')
     })
     // We can write our socket event listeners in here...
 });
 
-server.listen(4000, () => 'Server is running on port 3000');
+server.listen(4000, () => 'Server is running on port 4000');
