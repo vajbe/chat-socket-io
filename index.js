@@ -19,11 +19,12 @@ const io = new Server(server, {
 // Add this
 // Listen for when the client connects via socket.io-client
 io.on('connection', (socket) => {
-    
+
     console.log(`User connected ${socket.id}`);
     socket.on('message', (msg) => {
-        console.log(msg)
-        socket.emit('message', 'Got it')
+        console.log(msg);
+        msg.resonse = 'Sending back to ' + msg.from;
+        socket.emit(msg.from, msg)
     });
 
     socket.on('disconnect', (reason) => {
