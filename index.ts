@@ -1,6 +1,7 @@
+import http from 'http';
+
 const express = require('express');
 const app = express();
-http = require('http');
 const { Server } = require('socket.io'); // Add this
 
 // app.use(cors()); // Add cors middleware
