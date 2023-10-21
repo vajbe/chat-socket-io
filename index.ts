@@ -1,8 +1,8 @@
 import http from 'http';
-
+import { Server } from 'socket.io';
 const express = require('express');
 const app = express();
-const { Server } = require('socket.io'); // Add this
+// const { Server } = require('socket.io'); // Add this
 
 // app.use(cors()); // Add cors middleware
 
@@ -19,16 +19,18 @@ const io = new Server(server, {
 
 // Add this
 // Listen for when the client connects via socket.io-client
-io.on('connection', (socket) => {
+io.on('connection', (socket: any) => {
 
-    console.log(`User connected ${socket.id}`);
-    socket.on('message', (msg) => {
+    console.log(`User connected`, socket.auth);
+    socket.on('message', (msg: any) => {
         console.log(msg);
         msg.resonse = 'Sending back to ' + msg.from;
         socket.emit(msg.from, msg)
     });
 
-    socket.on('disconnect', (reason) => {
+    socket.on('disconnect', (res: any) => {
+        console.log(res);
+        console.log(`User disconnected ${socket.id}`);
         console.log('Disconnecting')
     })
     // We can write our socket event listeners in here...

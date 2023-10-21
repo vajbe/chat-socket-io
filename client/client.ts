@@ -1,6 +1,8 @@
-import io from 'socket.io-client';
+import socket from './socket';
 
-const socket = io('ws://localhost:4000')
+socket.auth = { userName: 'Vivek' };
+
+socket.connect();
 
 // socket.on('')
 socket.emit('message', {
