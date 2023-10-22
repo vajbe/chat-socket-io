@@ -1,6 +1,6 @@
 import socket from './socket';
 
-socket.auth = { userName: 'Vivek' };
+socket.auth = { userName: process.env.USER_ID };
 
 socket.connect();
 

@@ -1,5 +1,6 @@
 import http from 'http';
 import { Server } from 'socket.io';
+import { handleMiddleWare } from './socket-middleware';
 const express = require('express');
 const app = express();
 // const { Server } = require('socket.io'); // Add this
@@ -19,6 +20,8 @@ const io = new Server(server, {
 
 // Add this
 // Listen for when the client connects via socket.io-client
+
+handleMiddleWare(io);
 io.on('connection', (socket: any) => {
 
     console.log(`User connected`, socket.auth);
